@@ -1,3 +1,5 @@
+ 
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -7,7 +9,7 @@ export default function SearchBox({updateInfo}){
     const [city, setCity] = useState("");
     const [error, setError] = useState(false);
     const API_URL = "https://api.openweathermap.org/data/2.5/weather";
-    const API_KEY = "b50357c108de9fe90313a7bb5fb9f6f4";
+    const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
     
     
     let getWeatherInfo = async() => {
