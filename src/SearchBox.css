@@ -1,4 +1,28 @@
 .SearchBox{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 25px;
+    margin: 20px 0px;
+}
+.SearchBox form{
+    min-width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.SearchBox .searchButton{
+    min-width: 120px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: none;
+}
+.SearchBox .searchInput{
+    flex: 1;
+    background-color: white;
+    max-width: 500px;
+    border-radius: 8px;
 }

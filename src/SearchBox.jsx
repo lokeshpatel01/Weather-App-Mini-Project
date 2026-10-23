@@ -1,6 +1,4 @@
- 
-
-import TextField from '@mui/material/TextField';
+ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import "./SearchBox.css";
@@ -51,8 +49,8 @@ export default function SearchBox({updateInfo}){
     return(
         <div className='SearchBox'>
             <form onSubmit={handleSubmit}>
-                <TextField id="city" label="City name" variant="outlined" required value={city} onChange={handleChange}/> <br></br> <br></br>
-                <Button variant="contained" type="submit" endIcon={<SendIcon />}>Send</Button>
+                <TextField id="city" label="City name" variant="outlined" required value={city} onChange={handleChange} className='searchInput'/> &nbsp;
+                <Button size='large' variant="contained" type="submit" className='searchButton'>Search</Button>
             </form>
             {error && <p style={{color: "red"}}>No Such Place Exist.</p>}
         </div>
