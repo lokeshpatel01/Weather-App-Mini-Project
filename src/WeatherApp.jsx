@@ -1,5 +1,6 @@
 import SearchBox from "./SearchBox"
 import InfoBox from "./InfoBox"
+import "./WeatherApp.css"
 import { useEffect ,useState } from "react"
 
 export default function WeatherApp(){
@@ -10,8 +11,9 @@ export default function WeatherApp(){
         tempMax: 25,
         humidity: 24,
         feelsLike: 24.02,
-        weather: "clear Sky"
+        weather: "Clouds"
     });
+    const [forecast, setForecast] = useState([]);
 
     useEffect(() => {
         document.body.className = "clouds";
@@ -35,6 +37,8 @@ export default function WeatherApp(){
         }else if(newinfo.weather.includes("cloud")){
             document.body.className = "clouds";
         }
+
+        getForecast(newinfo.city);
     }
 
     const API_URL = "https://api.openweathermap.org/data/2.5/forecast";
@@ -63,27 +67,64 @@ export default function WeatherApp(){
 
                 if(!dates.has(date)){
                     dates.add(date);
-                    dailyForecast.push(date);
+                    dailyForecast.push(item);
                 }
             }
 
-            dailyForecast.map((date) => 
-                <div className="dailyinfo">
-                    <h3></h3>
-                </div>
-            );
+            let formattedForecast = dailyForecast.map((item) => ({
+                date : item.dt_txt.split(" ")[0],
+                day : new Date(item.dt_txt).toLocaleDateString("en-US", {
+                    weekday: "long"
+                }),
+                temp: Math.round(item.main.temp - 273),
+                weather: item.weather[0].main,
+                icon:  
+                 item.weather[0].main === "Clear" 
+                  ? "☀️" 
+                  :item.weather[0].main === "Clouds"
+                   ? "☁️"
+                   :item.weather[0].main === "Rain"
+                    ? "🌧️"
+                    :item.weather[0].main === "Snow"
+                     ? "❄️"
+                     :item.weather[0].main === "Thunderstorm"
+                      ? "⛈️"
+                      :"🌤️",
+            }));
+
+            // console.log(formattedForecast);
+
+            setForecast(formattedForecast);
+            console.log(formattedForecast);
         }catch (e){
             console.log("error", e);
         }
     }
 
-     getForecast(weatherInfo.city);
-
 
     return(
-        <div style={{textAlign: "center"}}>
-            <h1>Weather App</h1>
-            <SearchBox updateInfo={updateInfo}/>
+        <div className="weather-app">
+            <h1 className="weather-title">🌤️ Weather App</h1>
+
+            <div className="search-section">
+                <SearchBox updateInfo={updateInfo}/>
+            </div>
+
+            <h2 className="location-title">📍 {weatherInfo.city}</h2>
+
+            <div className="forecast">
+                {
+                    forecast.map((day) => (
+                        <div className="forecast-card" key={day.date}>
+                            <h3>{day.day}</h3>
+                            <div className="forecast-icon">{day.icon}</div>
+                            <p>{day.temp}°C</p>
+                            <small>{day.weather}</small>
+                        </div>
+                    ))
+                }
+            </div>
+            
             <InfoBox info={weatherInfo}/>
         </div>
     )

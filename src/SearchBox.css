@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    margin: 20px 0px;
+    margin: 20px 0 0;
 }
 .SearchBox form{
     min-width: 70%;
@@ -13,7 +13,7 @@
     gap: 12px;
 }
 .SearchBox .searchButton{
-    min-width: 120px;
+    /* min-width: 120px; */
     padding: 11px 20px;
     border-radius: 8px;
     font-size: 16px;
