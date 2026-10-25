@@ -1,6 +1,8 @@
  import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import Alert from '@mui/material/Alert';
+
 import "./SearchBox.css";
 import { useState } from 'react';
 export default function SearchBox({updateInfo}){
@@ -41,6 +43,7 @@ export default function SearchBox({updateInfo}){
             setCity("");
             let newinfo = await getWeatherInfo();
             updateInfo(newinfo);
+            setError(false);
         }catch(err){
             setError(true);
         }
@@ -52,7 +55,7 @@ export default function SearchBox({updateInfo}){
                 <TextField id="city" label="City name" variant="outlined" required value={city} onChange={handleChange} className='searchInput'/> &nbsp;
                 <Button size='large' variant="contained" type="submit" className='searchButton'>Search</Button>
             </form>
-            {error && <p style={{color: "red"}}>No Such Place Exist.</p>}
+            {error && <Alert severity="error">No such place found.</Alert> }
         </div>
     )
 }
