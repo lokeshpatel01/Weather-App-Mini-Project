@@ -28,6 +28,8 @@ export default function WeatherApp(){
             document.body.className = "rain";
         }else if(newinfo.weather.includes("snow")){
             document.body.className = "snow";
+        }else if(newinfo.temp >25 && (newinfo.weather.includes("clouds") || newinfo.weather.includes("rain"))){
+            document.body.className = "cloudsAndRain";
         }else if(newinfo.temp >25){
             document.body.className = "hot";
         }else if(newinfo.temp <=15){

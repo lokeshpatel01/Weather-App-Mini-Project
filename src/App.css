@@ -6,6 +6,12 @@ body{
   background-repeat: no-repeat;
 }
 
+/* body.cloudsAndRain{
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("https://media.istockphoto.com/id/1221835508/photo/lightning-in-the-field.jpg?s=612x612&w=0&k=20&c=28leC2V9tKeZtVzBDeHEpiOVlIjUgR7c8-raqK3XpII=");
+} */
+
 body.thunderstorm{
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
