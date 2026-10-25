@@ -28,7 +28,7 @@ export default function InfoBox({info}){
             />
             <CardContent>
                 <Typography sx={{textAlign: "center", fontWeight: "bold" ,mb: 1}} gutterBottom variant="h5" component="div">
-                {info.city} { info.weather.includes("clouds")? <ThunderstormIcon/> : info.temp > 20 ? <SunnyIcon/> : <AcUnitIcon/> }
+                {info.city} { info.weather.includes("rain") || info.weather.includes("clouds")? <ThunderstormIcon/> : info.temp > 20 ? <SunnyIcon/> : <AcUnitIcon/> }
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }} component={"span"}>
                 <p>Temperature = {info.temp}&deg;C</p>
